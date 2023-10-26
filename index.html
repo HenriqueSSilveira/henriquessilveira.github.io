@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desresumidor 3000</title>
+</head>
+<body>
+    <h1>Desresumidor 3000</h1>
+    
+    <p><strong>Texto de exemplo:</strong> TINT ESM PINT ACR BRI.</p>
+
+    <p><strong>Nomes:</strong></p>
+    <textarea id="nomes" rows="4" cols="100" placeholder="Digite os nomes"></textarea>
+
+    <button onclick="substituirPalavras()">Substituir Palavras</button>
+
+    <p><strong>Resultado:</strong></p>
+    <p id="resultado"></p> <!-- Usando a tag <p> para exibir o resultado -->
+
+    <a id="downloadLink" style="display: none" download="itens.txt">Baixar Itens</a>
+
+    <script>
+        function substituirPalavras() {
+            const textoOriginal = document.getElementById('nomes').textContent;
+            const nomes = document.getElementById('nomes').value.split(/\s+/);
+            const nomesFormatados = [];
+
+            for (const nome of nomes) {
+                switch (nome) {
+                    case 'TINT':
+                        nomesFormatados.push('Tinta');
+                        break;
+                    case 'ESM':
+                        nomesFormatados.push('Esmalte');
+                        break;
+                    case 'PINT':
+                        nomesFormatados.push('& Pinte');
+                        break;
+                    case 'ACR':
+                        nomesFormatados.push('Acrílico');
+                        break;
+                    case 'BRI':
+                        nomesFormatados.push('Brilhante');
+                        break;
+					case 'PEG':
+                        nomesFormatados.push('Peg');
+                        break;	
+					case 'EU':
+                        nomesFormatados.push('- Eucatex');
+                        break;
+					case 'EUCA':
+                        nomesFormatados.push('- Eucatex');
+                        break;	
+					case 'EUC':
+                        nomesFormatados.push('- Eucatex');
+                        break;	
+					case 'EUCAT':
+                        nomesFormatados.push('- Eucatex');
+						break;
+					case 'EUCATE':
+                        nomesFormatados.push('- Eucatex');
+                        break;	
+					case 'PSO':
+                        nomesFormatados.push('Piso');
+                        break;	
+					case 'PTO':
+                        nomesFormatados.push('Preto');
+                        break;
+					case 'PINT900ML':
+                        nomesFormatados.push('& Pinte 900ml');
+                        break;	
+					case 'SUP':
+                        nomesFormatados.push('Super');
+                        break;
+					case 'FSC3,6':
+                        nomesFormatados.push('Fosco 3,6L');
+                        break;
+					case 'FSC18':
+                        nomesFormatados.push('Fosco 18L');
+                        break;
+					case '3,6':
+                        nomesFormatados.push('3,6L');
+                        break;
+					case 'ACT':
+                        nomesFormatados.push('Acetinado');
+                        break;
+					case 'EUCATEX':
+                        nomesFormatados.push('- Eucatex');
+                        break;
+					case 'PTO':
+                        nomesFormatados.push('Preto');
+                        break;
+					case 'FS':
+                        nomesFormatados.push('Fosco');
+                        break;
+					case 'FSC':
+                        nomesFormatados.push('Fosco');
+                        break;	
+					case 'BCO':
+                        nomesFormatados.push('Branco');
+                        break;
+					case 'ALUM':
+                        nomesFormatados.push('Aluminio');
+                        break;
+					case 'TEMP':
+                        nomesFormatados.push('Temperatura');
+                        break;
+					case 'ULTR18L':
+                        nomesFormatados.push('Ultra 18L');
+                        break;
+					case 'ULT3,6L':
+                        nomesFormatados.push('Ultra 3,6L');
+                        break;
+					case 'ULTR':
+                        nomesFormatados.push('Ultra');
+                        break;
+					case 'CZA':
+                        nomesFormatados.push('Cinza');
+                        break;
+					case 'PROFUN':
+                        nomesFormatados.push('Profundo');
+                        break;
+					case '900ML':
+                        nomesFormatados.push('900ml');
+                        break;
+					case 'ESC':
+                        nomesFormatados.push('Escuro');
+                        break;
+					case 'DIAM':
+                        nomesFormatados.push('Diamantado');
+                        break;
+					case 'SEGMENT':
+                        nomesFormatados.push('Segmentado');
+                        break;
+					case 'DESEMP':
+                        nomesFormatados.push('Desempenado');
+                        break;
+					case 'CORTAG':
+                        nomesFormatados.push('- Cortag');
+                        break;
+					case 'C':
+                        nomesFormatados.push('- Cortag');
+                        break;
+					
+                    default:
+                        nomesFormatados.push(nome);
+                        break;
+                }
+            }
+
+            // Converter para minúsculas e, em seguida, capitalizar as iniciais
+            const palavrasFormatadas = nomesFormatados.map(palavra => {
+                const palavrasMinusc = palavra.toLowerCase();
+                return palavrasMinusc.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            });
+
+            // Exibir o resultado no parágrafo
+            const resultado = document.getElementById('resultado');
+            resultado.textContent = palavrasFormatadas.join(' ');
+
+            // Criar um arquivo TXT para download
+            const textoFinal = palavrasFormatadas.join(' ');
+            const blob = new Blob([textoFinal], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = url;
+            downloadLink.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
